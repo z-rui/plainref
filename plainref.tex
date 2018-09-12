@@ -1,0 +1,504 @@
+\input macros
+
+\centerline{\bf \TeX\ 参考卡}
+\centerline{\sevenrm （适用于 Plain \TeX）}
+
+\beginsection 希腊字母
+
+\symalign{
+alpha      &iota                   &varrho   \cr
+beta       &kappa                  &sigma    \cr
+gamma      &lambda                 &varsigma \cr
+delta      &mu                     &tau      \cr
+epsilon    &nu                     &upsilon  \cr
+varepsilon &xi                     &phi      \cr
+% o is a special case: it is not a control sequence.
+zeta       &\specialsym{$o$}{\tt o}&varphi   \cr
+eta        &pi                     &chi      \cr
+theta      &varpi                  &psi      \cr
+vartheta   &rho                    &omega    \cr
+\noalign{\smallskip}
+Gamma      &Xi                     &Phi      \cr
+Delta      &Pi                     &Psi      \cr
+Theta      &Sigma                  &Omega    \cr
+Lambda     &Upsilon                          \cr
+}
+
+\beginsection Ord 类型符号
+
+\symalign{
+aleph   &prime     &forall         \cr
+hbar    &emptyset  &exists         \cr
+imath   &nabla     &neg \aka\lnot  \cr
+jmath   &surd      &flat           \cr
+ell     &top       &natural        \cr
+wp      &bot       &sharp          \cr
+Re      &|         &clubsuit       \cr
+Im      &angle     &diamondsuit    \cr
+partial &triangle  &heartsuit      \cr
+infty   &backslash &spadesuit      \cr
+}
+
+\beginsection 大型运算符
+
+\symalign{
+sum     &bigcap   &bigodot   \cr
+prod    &bigcup   &bigotimes \cr
+coprod  &bigsqcup &bigoplus  \cr
+int     &bigvee   &biguplus  \cr
+oint    &bigwedge            \cr
+}
+
+\beginsection 二元运算符
+
+\symalign{
+pm       &cap             &vee   \aka\lor   \cr
+mp       &cup             &wedge \aka\land  \cr
+setminus &uplus           &oplus            \cr
+cdot     &sqcap           &ominus           \cr
+times    &sqcup           &otimes           \cr
+ast      &triangleleft    &oslash           \cr
+star     &triangleright   &odot             \cr
+diamond  &wr              &dagger           \cr
+circ     &bigcirc         &ddagger          \cr
+bullet   &bigtriangleup   &amalg            \cr
+div      &bigtriangledown                  \cr
+}
+
+\beginsection 页面布局
+
+\csalign{
+hsize=$\<尺寸>$&        设置页面宽度     \cr
+vsize=$\<尺寸>$&        设置页面高度     \cr
+displaywidth=$\<尺寸>$& 设置数学显示宽度 \cr
+hoffset=$\<尺寸>$&      横向移动页面     \cr
+voffset=$\<尺寸>$&      纵向移动页面     \cr
+}
+
+\beginsection 关系运算符
+
+\symalign{
+leq \aka\le &geq \aka\ge &equiv        \cr
+prec        &succ        &sim          \cr
+preceq      &succeq      &simeq        \cr
+ll          &gg          &asymp        \cr
+subset      &supset      &approx       \cr
+subseteq    &supseteq    &cong         \cr
+sqsubseteq  &sqsupseteq  &bowtie       \cr
+in          &notin       &ni \aka\owns \cr
+vdash       &dashv       &models       \cr
+smile       &mid         &doteq        \cr
+frown       &parallel    &perp         \cr
+propto                                 \cr
+\noalign{\medskip
+\hbox{大部分关系运算符可以通过添加 \cs{not} 前缀得到相反的符号。}
+\smallskip}
+\specialsym{$\not\equiv$}{\cs{not}\cs{equiv}}&notin &ne \cr
+}
+
+\beginsection 箭头
+
+\symalign{
+leftarrow  \aka\gets &longleftarrow      \cr
+Leftarrow            &Longleftarrow      \cr
+rightarrow \aka\to   &longrightarrow     \cr
+Rightarrow           &Rightarrow         \cr
+leftrightarrow       &longleftrightarrow \cr
+Leftrightarrow       &Longleftrightarrow \cr
+mapsto               &longmapsto         \cr
+hookleftarrow        &hookrightarrow     \cr
+uparrow              &Uparrow            \cr
+downarrow            &Downarrow          \cr
+updownarrow          &Updownarrow        \cr
+nearrow              &searrow            \cr
+nwarrow              &swarrow            \cr
+}\smallskip
+\cs{buildrel} 宏将一个符号放置在另一个符号上方。
+格式为 \cs{buildrel}\:$\<上标>$\:\cs{over}\:$\<关系>$。
+\symalign{
+\specialsym{\hfil$\buildrel\alpha\beta\over\longrightarrow$}%
+{\cs{buildrel}\cs{alpha}\cs{beta}\cs{over}\cs{longrightarrow}}\cr
+\specialsym{\hfil$f(x)\; {\buildrel\rm def\over=} \;x+1$}%
+{\tt f(x)\cs; \char`\{\cs{buildrel}\cs{rm} def\cs{over}=\char`\} \cs;x+1}\cr
+}
+
+\beginsection 分界符
+
+\def\ddelim#1{\specialsym{$#1\!#1$}{\tt\string#1\string\!\string#1}}
+\symalign{
+lbrack \aka[&lbrace \aka\{&langle         \cr
+rbrack \aka[&rbrace \aka\{&rangle         \cr
+vert   \aka|&lfloor       &lceil          \cr
+Vert  \aka\|&rfloor       &rceil          \cr
+\ddelim[&    \ddelim(&     \ddelim\langle \cr
+\ddelim]&    \ddelim)&     \ddelim\rangle \cr
+}\smallbreak
+左右分界符加上前缀 \cs{left} 或 \cs{right} 后可以放大。
+每个 \cs{left} 必须有一个对应的 \cs{right}， 其中一个可以是空的
+（\cs{left.} 或 \cs{right.}）。
+使用下列命令指定一个特定的大小。
+
+\centerline{\strut
+\cs{bigl}, \cs{bigr} \hss \cs{Bigl}, \cs{Bigr} \hss \cs{biggl}, \cs{biggr}}
+
+使用 \cs{bigm} 生成位于公式中间的大分界符， 或使用 \cs{big} 生成大的普通符号。
+
+\beginsection 每次插入
+
+\csalign{
+everypar&     每当段落开始时插入             \cr
+everymath&    每当文字中的数学内容开始时插入 \cr
+everydisplay& 每当数学显示内容开始时插入     \cr
+everycr&      每个 \cs{cr} 后插入            \cr
+}
+
+\beginsection 变音标记
+
+\accalign{
+帽子&      \hat a&         \cs ^\cr
+可伸展帽子&\widehat{abc}&  无\cr
+抑扬符&    \check a&       \cs v\cr
+波浪&      \tilde a&       \cs ~\cr
+可伸展波浪&\widetilde{abc}&无\cr
+锐音符&    \acute a       &\cs '\cr
+抑音符&    \grave a       &\cs `\cr
+点&        \dot a         &\cs .\cr
+两点&      \ddot a        &\cs "\cr
+短音符&    \breve a       &\cs u\cr
+横线&      \bar a         &\cs =\cr
+向量&      \vec a         &无\cr
+}\smallskip
+\cs{skew}$\<数字>$ 命令移动变音符到合适的位置， $\<数字>$越大，
+越向右移。 比较：
+$$
+\hbox{\tt\cs{hat}\braced{\cs{hat} A} 生成 $\hat{\hat A}$},
+\qquad
+\hbox{\tt\cs{skew}6\cs{hat}\braced{\cs{hat} A} 生成 $\skew6\hat{\hat A}$}.
+$$
+
+\beginsection 初等数学控制序列
+
+\halign to\hsize{%
+#\hfil\tabskip\centering&\hfil$\displaystyle{#}$\hfil&\tt#\hfil\tabskip=0pt\cr
+上划线&\overline{x+y}&\cs{overline}\braced{x+y}\cr
+下划线&\underline{x+y}&\cs{underline}\braced{x+y}\cr
+平方根&\sqrt{x+2}&\cs{sqrt}\braced{x+2}\cr
+高次方根&\root n\of{x+2}&\cs{root}\ n\cs{of}\braced{x+2}\cr
+分式&n+1\over3&\braced{n+1\cs{over}3}\cr
+分式 （无分数线）&n+1\atop 3&\braced{n+1\cs{atop} 3}\cr
+二项式系数&n+1\choose 3&\braced{n+1\cs{choose} 3}\cr
+大括号分式&n+1\brace 3&\braced{n+1\cs{brace} 3}\cr
+方括号分式&n+1\brack 3&\braced{n+1\cs{brack} 3}\cr
+}\smallskip
+
+以下指令用于指定公式排版风格。
+
+\centerline{\cs{displaystyle} \cs{textstyle}
+\cs{scriptstyle} \cs{scriptscriptstyle}}
+
+\beginsection 正体字函数名
+
+\halign to\hsize{&\cs{#}\hfil&\amp#\tabskip\centering\cr
+arccos&cos& csc&exp&ker&   limsup&min&sinh\cr
+arcsin&cosh&deg&gcd&lg&    ln&    Pr& sup\cr
+arctan&cot& det&hom&lim&   log&   sec&tan\cr
+arg&   coth&dim&inf&liminf&max&   sin&tanh\cr
+}\smallskip
+\halign to\hsize{\tt#\hfil\tabskip\centering&$#$\hfil&#\hfil\tabskip=0pt\cr
+a \cs{pmod}\braced{m}&a\pmod m&带括号 mod\cr
+a \cs{bmod} m&a\bmod m&不带括号 mod\cr
+}\medskip
+以下例子使用 \cs{mathop} 创建函数名。
+\halign to\hsize{%
+$\displaystyle{#}$\hfil\tabskip\centering&\tt#\hfil&\tt#\hfil\tabskip=0pt\cr
+\omit 例子\hfil&\omit 命令\hfil&\omit Plain \TeX\ 定义\hfil\cr
+\lim_{x\to2}&\cs{lim}\string_\braced{x\cs{to2}}&
+\cs{def}\cs{lim}\braced{\cs{mathop}\braced{\cs{rm} lim}}\cr
+\log_2&\cs{log}\string_2&
+\cs{def}\cs{log}\braced{\cs{mathop}\braced{\cs{rm} log}\cs{nolimits}}\cr
+}
+
+\beginsection 脚注、 插入和下划线
+
+\csalign{
+footnote$\<标记>$\braced{$\<文本>$}&     脚注\cr
+topinsert$\<竖模式内容>$\cs{endinsert}&  在页首插入\cr
+pageinsert$\<竖模式内容>$\cs{endinsert}& 在整页插入\cr
+midinsert$\<竖模式内容>$\cs{endinsert}&  在页中插入\cr
+underbar\braced{$\<文本>$}&              下划线文本\cr
+}\bigskip
+
+\begingroup \baselineskip=10pt \sevenrm
+\centerline{$\scriptstyle\copyright$ 2007 J.H.~Silverman， 授权在背面。 v1.5}
+发送评论和更正至 J.H.~Silverman, Math.~Dept., Brown Univ.,
+Providence, RI 02912 USA.
+$\scriptstyle\langle\hbox{jhs@math.brown.edu}\rangle$
+\par\endgroup
+
+\eject
+
+\beginsection 实用参数和转换
+
+\csalign{
+day,\cs{month},\cs{year}&        当前日、 月、 年\cr
+jobname&                         当前任务名\cr
+romannumeral$\<数学>$&           转换为小写罗马数字\cr
+uppercase\braced{$\<记号列表>$}& 转换为大写\cr
+lowercase\braced{$\<记号列表>$}& 转换为小写\cr
+}
+
+\beginsection 填充、 导引和省略号
+
+\symalign{
+\omit\span\omit 文本或数学：\hfil&dots \cr
+\omit 数学：\quad$\ldots$\hfil   &\cs{ldots}&cdots &vdots &ddots \cr
+}\smallskip
+以下命令以相应内容填充空间。
+
+\centerline{\cs{hrulefill} \cs{rightarrowfill} \cs{leftarrowfill} \cs{dotfill}}
+\smallskip
+
+构造导引的一般格式为
+\csalign{
+leaders$\<盒或线>$\cs{hskip}$\<胶>$& 重复盒或线\cr
+leaders$\<盒或线>$\cs{hfill}&        用盒或线填充\cr
+}
+
+\beginsection \TeX\ 字体和缩放
+
+\halign to\hsize{&\cs{#}\quad\hfil&#\hfil\tabskip\centering\cr
+rm&\rm Roman&bf&\bf Bold&tt&\tt Typewriter\cr
+sl&\sl Slant&it&\it Italic&/&“斜体修正”\cr
+}\smallskip
+\csalign{
+magnification=$\<数字>$&              缩放文档 $n/1000$ 倍\cr
+magstep$\<数字>$&                     缩放因数 $1.2^n\times 1000$\cr
+magstephalf&                          缩放因数 $\sqrt{1.2}$\cr
+font\cs{FN}=$\<字体名>$&              载入字体， 命名为 \cs{FN}\cr
+font\cs{FN}=$\<字体名>$ at $\<尺寸>$&
+                            \hphantom{载入字体， }缩放到尺寸\cr
+font\cs{FN}=$\<字体名>$ scaled $\<数字>$&
+                            \hphantom{载入字体， }缩放 $n/1000$ 倍\cr
+\omit\tt true$\<尺寸>$\hfil&          不缩放的尺寸\cr
+char`\cs{c}&                          打印字符或符号 $c$\cr
+}
+
+\beginsection 对齐显示
+
+\csalign{
+settabs$\<数字>$\cs{columns}&                   设置等宽制表位\cr
+settabs\cs{+}$\<样例行>$&                       根据样例行设置制表位\cr
++$\<文本$_1$>$\&$\<文本$_2$>$\&$\cdots$\cs{cr}& 要排版的制表文本\cr
+halign&                                         横向对齐\cr
+halign to$\<尺寸>$&                             横向对齐\cr
+openup$\<尺寸>$&                                增加行距\cr
+noalign\braced{$\<竖模式内容>$}&                在 \cs{cr} 后插入内容\cr
+tabskip=$\<胶>$&                                设置制表位处的胶\cr
+omit&                                           省略一列的模板\cr
+span&                                           合并两列\cr
+multispan$\<数字>$&                             合并若干列\cr
+hidewidth&                                      忽略一个单元格的宽度\cr
+crcr&                                           插入 \cs{cr} 如果不存在\cr
+}
+
+\beginsection 盒
+
+\csalign{
+hbox to$\<尺寸>$&    给定尺寸的横向盒\cr
+vbox to$\<尺寸>$&    纵向盒， 底端对齐\cr
+vtop to$\<尺寸>$&    纵向盒， 顶端对齐\cr
+vcenter to$\<尺寸>$& 纵向盒， 中间对齐 （仅限数学模式）\cr
+rlap&                右侧覆盖内容\cr
+llap&                左侧覆盖内容\cr
+}
+
+\beginsection 过满的盒
+
+\csalign{
+hfuzz&         横向盒中允许超出的量\cr
+vfuzz&         纵向盒中允许超出的量\cr
+overfullrule&  过满的盒的标记宽度。 要完全消除，\cr % 接下一行
+\omit&         \qquad 设置 \cs{overfullrule=0pt}。\cr
+}
+
+\beginsection 缩进和项目列表
+
+\csalign{
+indent&                     缩进\cr
+noindent&                   不缩进\cr
+parindent=$\<尺寸>$&        设置首行缩进\cr
+displayindent=$\<尺寸>$&    设置数学显示缩进\cr
+leftskip=$\<尺寸>$&         左侧空白\cr
+rightskip=$\<尺寸>$&        右侧空白\cr
+narrower&                   使段落更窄\cr
+item\braced{$\<标签>$}&     一级缩进项目列表\cr
+itemitem\braced{$\<标签>$}& 二级缩进项目列表\cr
+hangindent=$\<尺寸>$&       段落悬挂缩进\cr
+hangafter=$\<数字>$&        在第 $n$ 行后开始悬挂缩进。\cr % 接下一行
+\omit&                      \qquad 如果 $n<0$， 缩进前 $|n|$ 行。\cr
+parshape=$\<数字>$&         一般段落形状命令\cr
+}
+
+\beginsection 页眉、 页脚和页码
+
+\csalign{
+nopagenumbers& 关闭页码\cr
+pageno&        当前页码。 设置 \cs{pageno=$\<负数>$}以得到罗马数字，\cr
+folio&         当前页码， 如果 $<0$ 则得到罗马数字\cr
+footline&      放在页脚的内容\cr
+headline&      放在页眉的内容。 要留出空间， 设置\cr
+\omit&         \quad {\tt\cs{voffset}=2\cs{baselineskip}}， 并用\cr
+\omit&         \quad {\tt\cs{advance}\cs{vsize} by-\cs{voffset}} 创造空间\cr
+}
+
+\beginsection 宏定义
+
+\csalign{
+def\cs{cs}\braced{$\<替代文本>$}&定义宏 \cs{cs}\cr
+def\cs{cs}\#1$\cdots$\#$n$\braced{$\<替代文本>$}&带参数的宏\cr
+let\cs{cs}=$\<记号>$&令 \cs{cs} 为记号的当前含义\cr
+}\smallskip
+
+\leftline{\bf 高级宏定义命令}
+\csalign{
+long\cs{def}&                      参数可以包含 \cs{par} 的宏\cr
+outer\cs{def}&                     不允许出现在定义中的宏\cr
+global\cs{def}{\rm~或~}\cs{gdef}&  定义跨越分组的宏\cr
+edef&                              定义宏时展开\cr
+xdef{\rm~或~}\cs{global}\cs{edef}& \cs{edef}的全局版本\cr
+noexpand$\<记号>$&                 不展开记号\cr
+expandafter$\<记号>$&              先展开记号后的项\cr
+futurelet\cs{cs}$\<记号$_1$>\<记号$_2$>$\hidewidth&
+  \hskip1.5em 等价于 \cs{let}\cs{cs=}$\<记号$_2$>\<记号$_1$>\<记号$_2$>$\cr
+csname$\ldots$\cs{endcsname}&      创建控制序列名称\cr
+string\cs{cs}&                     列出名称中的字符， {\tt\string\ c s}\cr
+number$\<数字>$&                   数字中的字符列表\cr
+the$\<内部量>$&                    给出量的值的记号序列\cr
+}
+
+\beginsection 条件指令
+
+条件指令的一般格式为
+
+\centerline{\hbox{\cs{if}$\<条件>\<真时文本>$\cs{else}$\<假时文本>$\cs{fi}}}
+
+\csalign{
+ifnum$\<数字$_1$>\<关系>\<数字$_2$>$& 比较两整数\cr
+ifdim$\<尺寸$_1$>\<关系>\<尺寸$_2$>$& 比较两尺寸\cr
+ifodd$\<数字>$&                       测试奇数\cr
+ifmmode&                              测试数学模式\cr
+if$\<记号$_1$>\<记号$_2$>$&           测试字符代码匹配\cr
+ifx$\<记号$_1$>\<记号$_2$>$&          测试记号匹配\cr
+ifdim$\<尺寸$_1$>\<尺寸$_2$>$&        测试尺寸匹配\cr
+ifeof$\<数字>$&                       测试文件结束\cr
+iftrue{\rm, }\cs{iffalse}&            始终真、 始终假\cr
+% 第一列分两行
+ifcase$\<数字>\<文本$_0$>$\cs{or}$\<文本$_1$>$\cs{or}$\cdots\hidewidth$\cr
+\omit\quad \cs{or}$\<文本$_n$>$\cs{else}$\<文本>$\cs{fi}&
+                                      根据$\<数字>$选择文本\cr
+loop $\alpha$ \cs{if}$\ldots\beta$ \cs{repeat}&
+                                      循环 $\alpha\beta\alpha\cdots\alpha$
+				      直到 \cs{if} 为假\cr
+newif\cs{ifblob}&                     创建名为 \cs{ifblob} 的新条件指令\cr
+blobtrue{\rm, }\cs{blobfalse}&        设置条件 \cs{ifblob} 为真、 假\cr
+}
+
+\beginsection 尺寸、 间距和胶
+
+尺寸用$\<数字>\<单位>$指定。
+
+胶用$\tt\<尺寸>\;plus\<尺寸>\;minus\<尺寸>$指定。
+
+\halign to\hsize{&#\hfil\tabskip=1em&
+\tt#\hfil\tabskip=0pt&\amp#\tabskip\centering&\strut\vrule#\cr
+点&  pt&&派卡&pc&&英寸&    in&&厘米&cm\cr
+m 宽&em&&x 高&ex&&数学单位&mu&&毫米&mm\cr
+\multispan2 1 pc = 12 pt&&
+\multispan2 1 in = 72.27 pt&&
+\multispan2 2.54 cm = 1 in&&
+\multispan2 18 mu = 1 em\cr
+}\smallskip
+
+\begingroup
+\def\item#1{\par\leavevmode\hbox to.5\hsize{#1\hss}\ignorespaces}
+\def\itemitem#1{\item{\qquad#1}}
+\def\;{\hskip 1em plus .5em minus .5em\ignorespaces}
+\item{横向空格：} \cs{quad} （跳过 1em）\; \cs{quad}
+\item{横向空格 （文本）：} \cs{thinspace}\; \cs{enspace}\;
+\cs{enskip}\; \cs{hskip$\<胶>$}\; \cs{hfil}\; \cs{hfill}\; \cs{hfilneg}
+\item{横向空格 （数学）：} 窄空格 \cs{,}\; 中等空格 \cs{>}\;
+宽空格 \cs{;}\; 负窄空格 \cs{!}\; \cs{mskip$\<mu 胶>$}
+\smallskip
+\item{纵向空格：} \cs{vskip$\<胶>$}\; \cs{vfil}\; \cs{vfill}
+\halign{\qquad\cs{#}\hfil\tabskip=1em&#\hfil\tabskip=0pt\cr
+strut&高和深相当于 ``(''， 宽为零的盒\cr
+phantom\braced{$\<文本>$}&具有$\<文本>$尺寸的不可见盒\cr
+vphantom\braced{$\<文本>$}&高和深相当于$\<文本>$， 宽为零的盒\cr
+hphantom\braced{$\<文本>$}&宽相当于$\<文本>$， 高和深为零的盒\cr
+smash\braced{$\<文本>$}&排版$\<文本>$， 设置高和宽为零\cr
+}
+\halign{%
+\qquad\cs{#}$\<尺寸>$\cs{hbox}$\<文本>$\hfil\tabskip=1em&
+向#移动盒\hfil\tabskip=0pt\cr
+    raise&上\cr
+    lower&下\cr
+ moveleft&左\cr
+moveright&右\cr
+}
+\item{行间空格：} \cs{smallskip}\; \cs{medskip}\; \cs{bigskip}
+\itemitem{鼓励分页}\hidewidth \cs{smallbreak}\; \cs{medbreak}\; \cs{bigbreak}
+\itemitem{空间不足时分页} \cs{filbreak}
+\item{设置行间距：} \cs{baselineskip = $\<胶>$}
+\itemitem{单倍行距} \cs{baselineskip = 12pt}
+\itemitem{1.5 倍行距} \cs{baselineskip = 18pt}
+\itemitem{双倍行距} \cs{baselineskip = 24pt}
+\item{增加行间距} \cs{openup$\<尺寸>$}
+\itemitem{使用 \cs{jot}} {\tt 1\cs{jot} = 3pt}
+\item{允许行边界不对齐} \cs{raggedright}
+\item{允许页边界不对齐} \cs{raggedbottom}
+\par\endgroup
+
+\beginsection 括弧和矩阵
+
+\csalign{
+matrix&       矩阵\cr
+pmatrix&      带括号矩阵\cr
+bordermatrix& 带上方和左侧标签的矩阵\cr
+overbrace&    上花括号， 可以有上标\cr
+underbrace&   下花括号， 可以有下标\cr
+}\smallskip
+
+对于文本中的小矩阵， 使用以下构造：
+{\tabskip=2em\halign{\tt#\hfil&$#$\hfil\cr
+\braced{a\cs{,}b \cs{choose} c\cs{,}d}&{a\,b\choose c\,d}\cr
+\cs{left}( \braced{a\cs{atop} c} \braced{b\cs{atop} d} \cs{right})&
+\left({a\atop c}{b\atop d}\right)\cr
+}}
+
+\beginsection 显示公式
+
+\csalign{
+eqno&         右侧方程编号\cr
+leqno&        左侧方程编号\cr
+eqalign&      显示若干对齐方程\cr
+eqalignno&    显示右侧编号对齐方程\cr
+leqalignno&   显示左侧编号对齐方程\cr
+displaylines& 显示若干居中方程\cr
+cases&        分类定义\cr
+noalign&      在任意 \cs{cr} 后，
+              用 {\tt\cs{noalign}\braced{\cs{vskip}$\<胶>$}} \cr % 接下一行
+\omit&        \quad 在行间插入空格\cr
+openup&       在显示的所有行间添加空格\cr
+}\bigskip
+
+\begingroup \baselineskip=10pt \sevenrm
+\centerline{R.Z.~于 2018 年， 译自：}
+\centerline{版权所有 $\scriptstyle\copyright$ 2007 J.H.~Silverman,
+2007~年 1~月 v1.5}
+\centerline{Math. Dept., Brown Univ. Providence, RI 02912 USA}
+\centerline{\TeX 是美国数学学会的商标}
+\centerline{允许制作和分发此卡片的副本，
+条件是版权提示和此授权在所有副本上均以保留。}
+\par\endgroup
+
+\eject\end

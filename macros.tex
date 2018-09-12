@@ -1,0 +1,74 @@
+\input luaotfload.sty
+\input luatypezh
+
+\catcode`@=11
+
+\newif\ifisopaper \isopapertrue
+% \isopaperfalse % if you want to print on a US-Letter paper
+\newdimen\truehsize
+
+\ifisopaper
+  % A3 paper, landscape, 22mm margin
+  \pageheight=297mm
+  \pagewidth=420mm
+  \voffset=-3.4mm
+  \hoffset=-3.4mm
+  % three-column layout
+  \truehsize=370mm
+  \hsize=115mm
+  \vsize=253mm
+\else
+  % Proportional to US-Letter
+  \pageheight=12in
+  \pagewidth=15.5in
+  \voffset=-.125in
+  \hoffset=-.125in
+  \truehsize=13.75in
+  \hsize=4.375in
+  \vsize=10.25in
+\fi
+
+\newcount\colidx \colidx=0
+\newbox\leftcol \newbox\midcol \newbox\rightcol
+\output{\threecolumnoutput}
+\def\threecolumnoutput{\ifcase\colidx
+  \global\setbox\leftcol\pagebody \or
+  \global\setbox\midcol\pagebody \or
+  \global\setbox\rightcol\pagebody \threecolumnshipout \colidx=\m@ne \fi
+  \global\advance\colidx\@ne}
+\def\threecolumnshipout{\shipout\hbox to\truehsize
+  {\box\leftcol\hss\box\midcol\hss\box\rightcol}\advancepageno}
+
+\parindent=0pt
+
+% disable hyphenation for teletype font
+\hyphenchar\tentt=-1
+
+\def\cs#1{{\tt\char`\\\string#1}}
+\def\<#1>{\langle\hbox{\rm#1}\rangle}
+\def\braced#1{\relax\string{#1\string}}
+\def\:{\discretionary{}{}{}}
+\def\amp{&}
+
+\def\symtmpl#1 {$\csname#1\endcsname$&\cs{#1}}
+\def\specialsym#1#2{\omit#1\hfil&#2}
+\def\symalign#1{\halign to\hsize
+  {&\symtmpl##\hfil\tabskip=1em&##\hfil\tabskip\centering\cr#1}}
+\def\aka#1{ 或 {\tt\string#1}}
+
+\def\csalign#1{\halign{\cs{##}\hfil\tabskip=2em minus 2em&
+  ##\hfil\tabskip=0pt\cr#1}}
+
+\def\acctmpl#1#2{\hfil$#1{#2}$\hfil&\tt\string#1}
+\def\accalign#1{\halign to\hsize
+  {##\hfil\aftergroup\acctmpl\tabskip\centering&
+    \hfil##\hfil&##\hfil&\hfil##\hfil\tabskip\z@skip\cr
+    \omit 类型\hfil&举例&数学模式&文字模式\cr#1}}
+
+\def\c@pyright#1#2{\ooalign{\hfil \raise .07ex\hbox {$#1\rm c$}\hfil \crcr
+$#1\bigcirc$}}
+\def\copyright{{\mathpalette\c@pyright{}}}
+
+\catcode`@=12
+
+% vim:ts=2:sw=2:et
